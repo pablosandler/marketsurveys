@@ -33,12 +33,5 @@ public interface MarketSurveyRepository  extends JpaRepository<MarketSurvey, Lon
                             @Param("incomeFrom") Long incomeFrom,
                             @Param("incomeTo") Long incomeTo,
                             @Param("currency") String currency);
-
-    /*
-    //todo check extending Repository --> https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-two-crud/
-    //todo check asycs --> https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-introduction-to-query-methods/
-
-    @Query("select v from VerificationToken v where v.used=false and v.code=:code and v.verificationTokenType=:typ and v.validUntil>=:date")
-    VerificationToken findValidToken(@Param("code") String token, @Param("typ") VerificationTokenType verificationTokenType, @Param("date")
-     */
+    //todo remove this method
 }

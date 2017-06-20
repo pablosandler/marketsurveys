@@ -32,8 +32,8 @@ public class MarketSurveyRepositoryTest extends TestCase {
 
     @Test
     public void xxx(){
-        Provider provider = providerRepository.save(new Provider("provider"));
-        Subject subject = subjectRepository.save(new Subject("code", "name"));
+        Provider provider = providerRepository.save(new Provider(null, "provider"));
+        Subject subject = subjectRepository.save(new Subject(null, "code", "name"));
 
         Range ageRange = new Range(3L, 4L);
         CurrencyRange incomeRange = new CurrencyRange("EUR", 1L, 2L);
@@ -43,7 +43,7 @@ public class MarketSurveyRepositoryTest extends TestCase {
 
         List<MarketSurvey> aa = repository.find("code", 1L, Sex.MALE, "ES", 3l, 4l, 1L, 2L, "EUR");
 
-        assertTrue(false==aa.isEmpty());
+        assertTrue(!aa.isEmpty());
     }
 
 }

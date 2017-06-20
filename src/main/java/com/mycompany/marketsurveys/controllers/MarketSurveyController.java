@@ -2,6 +2,7 @@ package com.mycompany.marketsurveys.controllers;
 
 import com.mycompany.marketsurveys.entities.MarketSurvey;
 import com.mycompany.marketsurveys.enums.Sex;
+import com.mycompany.marketsurveys.errorHandling.exceptions.BusinessException;
 import com.mycompany.marketsurveys.errorHandling.exceptions.ValidationException;
 import com.mycompany.marketsurveys.serviceResponse.ServiceResponse;
 import com.mycompany.marketsurveys.services.MarketSurveyService;
@@ -61,8 +62,13 @@ public class MarketSurveyController {
             throw new ValidationException(errors);
         }
 
-        List<MarketSurvey> availableMarketSurveys = marketSurveyService.getAvailableSurveys(requester, provider, subject, country,
-                sex, ageFrom, ageTo, incomeCurrency, incomeFrom, incomeTo);
+        List<MarketSurvey> availableMarketSurveys = null;
+        try {
+            availableMarketSurveys = marketSurveyService.getAvailableSurveys(requester, provider, subject, country,
+                    sex, ageFrom, ageTo, incomeCurrency, incomeFrom, incomeTo);
+        } catch (BusinessException e) {
+            e.printStackTrace();//todo change this
+        }
 
         ServiceResponse response = new ServiceResponse();
         response.setData(new ArrayList<>(availableMarketSurveys));

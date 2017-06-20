@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 @Component
 public class MarketSurveyValidator {
 
-    private static final String AGE_FROM_LOWER_THAN_ZERO_ERROR = "error.age.from.lower.than.zero=";
+    private static final String AGE_FROM_LOWER_THAN_ZERO_ERROR = "error.age.from.lower.than.zero";
     private static final String AGE_TO_LOWER_THAN_ZERO_ERROR = "error.age.to.lower.than.zero";
     private static final String AGE_RANGE_ERROR = "error.age.range";
     private static final String INCOME_FROM_LOWER_THAN_ZERO_ERROR = "error.income.from.lower.than.zero";
@@ -30,12 +30,10 @@ public class MarketSurveyValidator {
         errors.add(ValidationUtils.checkLargerThan(ageToOpt, 0, AGE_TO_LOWER_THAN_ZERO_ERROR));
         errors.add(ValidationUtils.checkRange(ageFromOpt, ageToOpt, AGE_RANGE_ERROR));
 
-        Set<String> result = errors.stream()
+        return errors.stream()
                 .filter(m -> m.isPresent())
                 .map(m -> m.get())
                 .collect(Collectors.toSet());
-
-        return result;
     }
 
     public Optional<String> validateCountry(String country){
@@ -77,12 +75,10 @@ public class MarketSurveyValidator {
         errors.add(currencyValidation);
 
 
-        Set<String> result = errors.stream()
+        return errors.stream()
                 .filter(m -> m.isPresent())
                 .map(m -> m.get())
                 .collect(Collectors.toSet());
-
-        return result;
     }
 
 }

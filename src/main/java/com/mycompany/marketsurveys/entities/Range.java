@@ -5,9 +5,9 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Range{
 
-    private Long from;
+    private final Long from;
 
-    private Long to;
+    private final Long to;
 
     public Range(Long from, Long to) {
         //todo throw error if the two are None
@@ -21,4 +21,11 @@ public class Range{
         this.to = null;
     }
 
+    public Long getFrom() {
+        return from;
+    }
+
+    public Long getTo() {
+        return to;
+    }
 }

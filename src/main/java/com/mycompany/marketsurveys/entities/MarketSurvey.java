@@ -10,28 +10,26 @@ public class MarketSurvey {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(nullable=false)
-    private final Long id;
+    private Long id;
 
-    @ManyToOne
-    @Column(nullable=false)
-    private final Subject subject;
+    @ManyToOne(optional = false)
+    private Subject subject;
 
-    @ManyToOne
-    @Column(nullable=false)
-    private final Provider provider;
+    @ManyToOne(optional = false)
+    private Provider provider;
 
     @Column
-    private final String country;
+    private String country;
 
     @Column(nullable=false)
-    private final String description;
+    private String description;
 
     @Column(nullable=false)
-    private final Date creationDate;
+    private Date creationDate;
 
     @Column(nullable=false)
     @Enumerated(EnumType.STRING)
-    private final Sex sex;
+    private Sex sex;
 
     @Embedded
     @AttributeOverrides({
@@ -40,7 +38,7 @@ public class MarketSurvey {
             @AttributeOverride(name="to",
                     column=@Column(name="age_to"))
     })
-    private final Range ageRange;
+    private Range ageRange;
 
     @Embedded
     @AttributeOverrides({
@@ -51,7 +49,7 @@ public class MarketSurvey {
             @AttributeOverride(name="to",
                     column=@Column(name="income_to"))
     })
-    private final CurrencyRange incomeRange;
+    private CurrencyRange incomeRange;
 
 
     public MarketSurvey(Subject subject, Provider provider, String country, String description,
@@ -114,5 +112,41 @@ public class MarketSurvey {
 
     public CurrencyRange getIncomeRange() {
         return incomeRange;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = new Subject(subject.getId(), subject.getCode(), subject.getName());
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = new Provider(provider.getId(), provider.getName());
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = new Date(creationDate.getTime());
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+
+    public void setAgeRange(Range ageRange) {
+        this.ageRange = new Range(ageRange.getFrom(), ageRange.getTo());
+    }
+
+    public void setIncomeRange(CurrencyRange incomeRange) {
+        this.incomeRange = new CurrencyRange(incomeRange.getCurrency(), incomeRange.getFrom(), incomeRange.getTo());
     }
 }

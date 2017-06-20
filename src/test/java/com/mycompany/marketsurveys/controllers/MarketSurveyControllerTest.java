@@ -77,7 +77,7 @@ public class MarketSurveyControllerTest {
 
     @Test
     public void whenNoErrorsAreFoundReturnAListOfMarketSurveys() throws Exception {
-        MarketSurvey marketSurveys = new MarketSurvey(new Subject("code", "name"), new Provider("provider"), "ES", "desc", new Date(), Sex.MALE, null, null);
+        MarketSurvey marketSurveys = new MarketSurvey(new Subject(null, "code", "name"), new Provider(null, "provider"), "ES", "desc", new Date(), Sex.MALE, null, null);
         List<MarketSurvey> list = new ArrayList<>();
         list.add(marketSurveys);
         when(marketSurveyService.getAvailableSurveys(1L, 1L, "ES", null, Sex.MALE, null, null, null, null, null)).thenReturn(list);

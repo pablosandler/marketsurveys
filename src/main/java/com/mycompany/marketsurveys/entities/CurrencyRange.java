@@ -1,17 +1,15 @@
 package com.mycompany.marketsurveys.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import java.util.Optional;
 
 @Embeddable
 public class CurrencyRange {
 
     private final String currency;
 
-    private Long from;
+    private final Long from;
 
-    private Long to;
+    private final Long to;
 
     public CurrencyRange(String currency, Long from, Long to) {
         //todo throw error if currency is null
@@ -26,5 +24,17 @@ public class CurrencyRange {
         this.currency = null;
         this.from = null;
         this.to = null;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public Long getFrom() {
+        return from;
+    }
+
+    public Long getTo() {
+        return to;
     }
 }
